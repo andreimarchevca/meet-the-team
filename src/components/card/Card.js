@@ -1,38 +1,19 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons"
+import './Card.css';
 
 class Card extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         if (this.props === undefined) {
             return null;
         }
 
-        const cardStyle = {
-            flex: "1 0 21%",
-            margin: "15px",
-            padding: "10px",
-            height: "auto",
-            backgroundColor: "#fff",
-            boxShadow: "0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2)"
-        };
-
-        const portraitStyle = {
-            width: "100%",
-            height: "200px"
-        };
-
-        const imgStyle = {
-            height: "100%"
-        };
-
         const { employee } = this.props;
         return (
-            <div className="card" style={cardStyle}>
-                <div className="card__portrait" style={portraitStyle}>
-                    <img src={employee.imagePortraitUrl} style={imgStyle} />
+            <div className="card">
+                <div className="card__portrait">
+                    <img src={employee.imagePortraitUrl} className="card__img" alt={employee.name} />
                 </div>
                 <div className="card-info">
                     <div className="card-info__text">
@@ -40,9 +21,9 @@ class Card extends React.Component {
                         <div className="location">{employee.office}</div>
                     </div>
                     <div className="card-info__links">
-                        <a className="linkedin" target="_blank" href={ "http://www.linkedin.com/" + employee.linkedIn }>{employee.linkedIn}</a>
-                        <a className="linkedin" target="_blank" href={ "http://www.github.com/" + employee.gitHub }>{employee.gitHub}</a>
-                        <a className="linkedin" target="_blank" href={ "http://www.twitter.com/" + employee.twitter }>{employee.twitter}</a>
+                        { employee.linkedIn && <a className="social-icon-svg" target="_blank" rel="noreferrer" href={ "http://www.linkedin.com/" + employee.linkedIn }><FontAwesomeIcon icon={faLinkedin} size={'2x'} color="black" /></a> }
+                        { employee.gitHub && <a className="social-icon-svg" target="_blank" rel="noreferrer" href={ "http://www.github.com/" + employee.gitHub }><FontAwesomeIcon icon={faGithub} size={'2x'} color="black" /></a> }
+                        { employee.twitter && <a className="social-icon-svg" target="_blank" rel="noreferrer" href={ "http://www.twitter.com/" + employee.twitter }><FontAwesomeIcon icon={faTwitter} size={'2x'} color="black" /></a> }
                     </div>
                 </div>
             </div>
