@@ -41,7 +41,7 @@ class ListComponent extends React.Component {
         };
 
         const filterByOffice = type => {
-            if (type == 'All offices') {
+            if (type === 'All offices') {
                 const allItems = this.state.employees;
                 this.setState({ filtered: false, employees: allItems });
             } else {
