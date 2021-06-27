@@ -6,7 +6,9 @@ class ListComponent extends React.Component {
         super(props);
 
         this.state = {
-            employees: null
+            employees: [],
+            filteredItems: [],
+            filtered: false,
         };
     }
 
@@ -51,16 +53,64 @@ class ListComponent extends React.Component {
             const sortProperty = types[type];
             const sorted = this.state.employees.sort((a, b) => (a[sortProperty] > b[sortProperty]) ? 1 : -1);
             this.setState({ employees: sorted });
-          };
+        };
+
+        const filterByOffice = type => {
+            if (type == 'All offices') {
+                const allItems = this.state.employees;
+                this.setState({ filtered: false, employees: allItems });
+            } else {
+                const filteredByOffice = this.state.employees.filter(function (el) {
+                    return el.office === type;
+                  });
+                this.setState({ filtered: true, filteredItems: filteredByOffice });
+            }
+        };
+
+        const filterByName = value => {
+            const filteredByName = this.state.employees.filter(function (el) {
+                if (!value) return true;
+                if (el.name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                    return true;
+                }
+                return false;
+              });
+            this.setState({ filtered: true, filteredItems: filteredByName });
+        };
+
+        const filteredResults = this.state.filteredItems ? Object.keys(this.state.filteredItems).map((item, id) => {
+            return (
+              <Card
+                key={id}
+                employee={this.state.filteredItems[item]} 
+              />
+            )
+        }) : null;
         
         return (
             <div className="main__container" style={containerStyle}>
                 <h3 style={headingStyle}>The fellowship of the tretton37</h3>
-                <select onChange={(e) => sortArray(e.target.value)}>
-                    <option value="name">Name</option>
-                    <option value="office">Office</option>
-                </select>
-                <div className="results__container" style={resultStyle}>{result}</div>
+                <div className="filter__section">
+                    <span>Filter: </span>
+                    <input type="text" placeholder="type name" onChange={(e) => filterByName(e.target.value)}></input>
+                    <select onChange={(e) => filterByOffice(e.target.value)}>
+                        <option value="All offices">All offices</option>
+                        <option value="Borlänge">Borlänge</option>
+                        <option value="Helsingborg">Helsingborg</option>
+                        <option value="Ljubljana">Ljubljana</option>
+                        <option value="Lund">Lund</option>
+                        <option value="Stockholm">Stockholm</option>
+                    </select>
+                    <span>Sort by:</span>
+                    <select onChange={(e) => sortArray(e.target.value)}>
+                        <option value="name">Name</option>
+                        <option value="office">Office</option>
+                    </select>
+                </div>
+                
+                <div className="results__container" style={resultStyle}>
+                    {this.state.filtered ? filteredResults : result}
+                </div>
             </div>
         )
       }
