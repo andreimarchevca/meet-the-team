@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/card/Card';
+import './ListComponent.css';
 
 class ListComponent extends React.Component {
     constructor(props) {
@@ -20,22 +21,6 @@ class ListComponent extends React.Component {
     }
 
     render() {
-        const containerStyle = {
-            backgroundColor: "#f3f3f3",
-            padding: "25px",
-            maxWidth: "80%",
-            margin: "0 auto"
-          };
-
-        const headingStyle = {
-            textAlign: "left"
-        };
-
-        const resultStyle = {
-            display: "flex",
-            flexWrap: "wrap"
-        };
-
         const result = this.state.employees ? Object.keys(this.state.employees).map((item, id) => {
             return (
               <Card
@@ -88,8 +73,8 @@ class ListComponent extends React.Component {
         }) : null;
         
         return (
-            <div className="main__container" style={containerStyle}>
-                <h3 style={headingStyle}>The fellowship of the tretton37</h3>
+            <div className="main__container">
+                <h3 className="main__heading">The fellowship of the tretton37</h3>
                 <div className="filter__section">
                     <span>Filter: </span>
                     <input type="text" placeholder="type name" onChange={(e) => filterByName(e.target.value)}></input>
@@ -108,7 +93,7 @@ class ListComponent extends React.Component {
                     </select>
                 </div>
                 
-                <div className="results__container" style={resultStyle}>
+                <div className="results__container">
                     {this.state.filtered ? filteredResults : result}
                 </div>
             </div>
