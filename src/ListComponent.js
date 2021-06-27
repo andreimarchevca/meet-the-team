@@ -20,7 +20,7 @@ class ListComponent extends React.Component {
     render() {
         const containerStyle = {
             backgroundColor: "#f3f3f3",
-            padding: "10px",
+            padding: "25px",
             maxWidth: "80%",
             margin: "0 auto"
           };
