@@ -42,10 +42,24 @@ class ListComponent extends React.Component {
               />
             )
         }) : null;
+
+        const sortArray = type => {
+            const types = {
+              name: 'name',
+              office: 'office'
+            };
+            const sortProperty = types[type];
+            const sorted = this.state.employees.sort((a, b) => (a[sortProperty] > b[sortProperty]) ? 1 : -1);
+            this.setState({ employees: sorted });
+          };
         
         return (
             <div className="main__container" style={containerStyle}>
                 <h3 style={headingStyle}>The fellowship of the tretton37</h3>
+                <select onChange={(e) => sortArray(e.target.value)}>
+                    <option value="name">Name</option>
+                    <option value="office">Office</option>
+                </select>
                 <div className="results__container" style={resultStyle}>{result}</div>
             </div>
         )
