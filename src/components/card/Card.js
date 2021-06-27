@@ -18,7 +18,7 @@ class Card extends React.Component {
                 <div className="card-info">
                     <div className="card-info__text">
                         <div className="name">{employee.name}</div>
-                        <div className="location">{employee.office}</div>
+                        <div className="location">Office: {employee.office}</div>
                     </div>
                     <div className="card-info__links">
                         { employee.linkedIn && <a className="social-icon-svg" target="_blank" rel="noreferrer" href={ "http://www.linkedin.com/" + employee.linkedIn }><FontAwesomeIcon icon={faLinkedin} size={'2x'} color="black" /></a> }
