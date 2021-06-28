@@ -117,7 +117,7 @@
     padding: 8px 0;
     border-bottom: 2px solid #9b9b9b;
     min-width: 200px;
-    font-family: 'Lato', cursive;
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
 
     background:
         linear-gradient(45deg, transparent 50%, black 50%),
