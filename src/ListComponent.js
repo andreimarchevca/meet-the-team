@@ -76,21 +76,28 @@ class ListComponent extends React.Component {
             <div className="main__container">
                 <h3 className="main__heading">The fellowship of the tretton37</h3>
                 <div className="filter__section">
-                    <span>Filter: </span>
-                    <input type="text" placeholder="type name" onChange={(e) => filterByName(e.target.value)}></input>
-                    <select onChange={(e) => filterByOffice(e.target.value)}>
-                        <option value="All offices">All offices</option>
-                        <option value="Borlänge">Borlänge</option>
-                        <option value="Helsingborg">Helsingborg</option>
-                        <option value="Ljubljana">Ljubljana</option>
-                        <option value="Lund">Lund</option>
-                        <option value="Stockholm">Stockholm</option>
-                    </select>
-                    <span>Sort by:</span>
-                    <select onChange={(e) => sortArray(e.target.value)}>
-                        <option value="name">Name</option>
-                        <option value="office">Office</option>
-                    </select>
+                    <div className="form__group textfield">
+                        <input type="text" id="name" className="form__field" placeholder="Type in someone's name" onChange={(e) => filterByName(e.target.value)}></input>
+                        <label for="name" className="form__label">Name</label>  
+                    </div>
+                    <div className="form__group select">
+                        <label for="filterOnlyFrom">Filter by office</label>
+                        <select id="filterOnlyFrom" className="form__select" onChange={(e) => filterByOffice(e.target.value)}>
+                            <option value="All offices">All offices</option>
+                            <option value="Borlänge">Borlänge</option>
+                            <option value="Helsingborg">Helsingborg</option>
+                            <option value="Ljubljana">Ljubljana</option>
+                            <option value="Lund">Lund</option>
+                            <option value="Stockholm">Stockholm</option>
+                        </select>                        
+                    </div>
+                    <div className="form__group select">
+                        <label for="sortBySelect">Sort by</label>
+                        <select id="sortBySelect" className="form__select" onChange={(e) => sortArray(e.target.value)}>
+                            <option value="name">Name</option>
+                            <option value="office">Office</option>
+                        </select>                        
+                    </div>
                 </div>
                 
                 <div className="results__container">
